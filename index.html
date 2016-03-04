@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta content="telephone=no" name="format-detection"/>
+    <title>hash-state-manager</title>
+    <style>
+        button{
+            margin:30px;
+        }
+    </style>
+</head>
+<body>
+    <button id="open">打开</button>
+    <button id="close">关闭</button>
+    <button id="open2">打开2</button>
+    <script src="./lib/hash-manager.js"></script>
+<script>
+    var hashManager=new HashManager(function(){console.log('default open')}, function () {console.log('default close')})
+    hashManager.register('hello',function(){console.log('hello open')},function(){console.log('hello close')})
+    hashManager.register('hello2',function(){console.log('hello open2')},function(){console.log('hello close2')})
+    document.querySelector('#open').onclick=function(e){
+        if(location.hash=='') hashManager.changeState('hello',true);
+        //如果几个状态是串行的，则用true,这样后退的时候就会退到上一个状态。如果几个状态是并行的，则用false,则后退会直接退到默认页
+        else hashManager.changeState('hello',false);
+    }
+    document.querySelector('#close').onclick=function(e){
+        hashManager.closeHash('hello');
+    }
+    document.querySelector('#open2').onclick=function(e){
+        if(location.hash=='') hashManager.changeState('hello2',true);
+        else hashManager.changeState('hello2',false);
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "hash-state-manager",
+  "version": "1.0.0",
+  "description": "h5 hash状态管理",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hash"
+  ],
+  "author": "dennis",
+  "license": "ISC"
+}
